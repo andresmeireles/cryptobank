@@ -1,0 +1,37 @@
+{
+    "name": "andresmeireles/cryptocli",
+    "description": "A cli for imaginary crypto bank",
+    "type": "project",
+    "require": {
+        "php-di/php-di": "^6.4",
+        "symfony/console": "^6.1",
+        "doctrine/orm": "^2.13",
+        "vlucas/phpdotenv": "^5.4",
+        "symfony/cache": "^6.1",
+        "symfony/var-dumper": "^6.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4.27",
+        "phpstan/phpstan": "^1.8",
+        "doctrine/migrations": "^3.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Cryptocli\\": "src/",
+            "Cryptocli\\Migration\\": "migration/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "André Meireles",
+            "email": "andre2meireles@gmail.com"
+        }
+    ]
+}
