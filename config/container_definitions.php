@@ -2,4 +2,13 @@
 
 declare(strict_types=1);
 
-return [];
+use Cryptocli\Cli\Cli;
+use Cryptocli\Cli\SymfonyCli;
+use DI\Container;
+
+return [
+    Cli::class => function (Container $container) {
+        $commands = new Cryptocli\Cli\Commands();
+        return new SymfonyCli($container, $commands->getSymfonyCommands());
+    }
+];
