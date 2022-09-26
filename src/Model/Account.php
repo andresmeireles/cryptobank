@@ -2,6 +2,7 @@
 
 namespace Cryptocli\Model;
 
+use Cryptocli\Repository\AccountRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping\JoinColumn;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity]
+#[Entity(repositoryClass: AccountRepository::class)]
 #[Table(name: 'account')]
 class Account
 {
@@ -32,5 +33,15 @@ class Account
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public static function create(User $user): self
+    {
+        $account = new Account();
+        $account->number = random_int(111111, 999999);
+        $account->user = $user;
+
+        return $account;
+
     }
 }

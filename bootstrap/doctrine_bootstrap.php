@@ -21,4 +21,5 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
     paths: $paths,
     isDevMode: $isDevMode,
 );
-$entityManager = EntityManager::create($dbParams, $config);
+
+return $entityManager = EntityManager::create($dbParams, $config);

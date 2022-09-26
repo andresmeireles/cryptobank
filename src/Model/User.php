@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cryptocli\Model;
 
+use Cryptocli\Repository\UserRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
-#[Entity]
+#[Entity(repositoryClass: UserRepository::class)]
 #[Table(name: 'user')]
 class User
 {
@@ -20,11 +21,8 @@ class User
     #[GeneratedValue]
     private ?int $id;
 
-    #[Column(name: 'name', type: 'string', nullable: false)]
-    public string $name;
-
-    #[Column(name: 'commercial_name', type: 'string', nullable: false)]
-    public string $commercialName;
+    #[Column(name: 'name_commercial_name', type: 'string', nullable: false)]
+    public string $nameCommercialName;
 
     #[Column(name: 'cnpj_cpf', type: 'string', nullable: false)]
     public string $cnpjCpf;
@@ -43,4 +41,25 @@ class User
 
     #[OneToOne(mappedBy: 'user', targetEntity: Account::class)]
     public Account $account;
+
+    #[OneToOne(mappedBy: 'user', targetEntity: Auth::class)]
+    public Auth $auth;
+
+    public static function create(string $nameCommercialName, string $cnpjCpf, string $rgIE, \DateTime $birthDateFoundationDate, string $phone, string $address): self
+    {
+        $user = new self();
+        $user->birthDateFoundationDate = $birthDateFoundationDate;
+        $user->nameCommercialName = $nameCommercialName;
+        $user->address = $address;
+        $user->cnpjCpf = $cnpjCpf;
+        $user->phone = $phone;
+        $user->rgIE = $rgIE;
+
+        return $user;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 }
