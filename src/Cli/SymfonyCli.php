@@ -6,6 +6,7 @@ use Cryptocli\Cli\Command\Authable;
 use Cryptocli\Cli\Command\AuthCommand;
 use DI\Container;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 
@@ -26,9 +27,11 @@ class SymfonyCli implements Cli
         $app = new Application();
         foreach ($this->commands as $command) {
             $commandInstance = $this->container->get($command);
+            if (!($commandInstance instanceof Command)) {
+                throw new \LogicException('some commands are invalid');
+            }
             if ($commandInstance instanceof Authable) {
-                $app->add(new AuthCommand($commandInstance));
-                continue;
+                $commandInstance = new AuthCommand($commandInstance);
             }
             $app->add($commandInstance);
         }

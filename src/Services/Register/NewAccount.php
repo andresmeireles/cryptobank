@@ -9,12 +9,14 @@ use Cryptocli\Model\User;
 use Cryptocli\Repository\Interfaces\AccountRepository;
 use Cryptocli\Repository\Interfaces\UserRepositoryInterface;
 use Cryptocli\Services\ServiceError;
+use Psr\Log\LoggerInterface;
 
 class NewAccount implements CreateAccount
 {
     public function __construct(
         private readonly AccountRepository $accountRepository,
         private readonly UserRepositoryInterface $userRepository,
+        private readonly LoggerInterface $logger,
     )
     {
     }
@@ -25,8 +27,21 @@ class NewAccount implements CreateAccount
         if ($user === null) {
             return RegisterErrors::USER_NOT_FOUND;
         }
-        $account = Account::create($user);
+        $account = $this->createAccount($user);
+        $newAccount = $this->accountRepository->create($account);
+        $this->logger->info(sprintf('account %s successfuly created', $account->number));
 
-        return $this->accountRepository->create($account);
+        return $newAccount;
+    }
+
+    private function createAccount(User $user): Account
+    {
+        $newAccount = Account::create($user);
+        $accountExists = $this->accountRepository->findBy(['number' => $newAccount->number]);
+        if ($accountExists !== []) {
+            return $this->createAccount($user);
+        }
+
+        return $newAccount;
     }
 }

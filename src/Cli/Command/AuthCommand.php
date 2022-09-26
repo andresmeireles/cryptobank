@@ -15,6 +15,7 @@ final class AuthCommand extends Command
         private readonly Command $command
     )
     {
+        $this->setDescription($this->command->getDescription());
         parent::__construct($this->command->getName());
     }
 
