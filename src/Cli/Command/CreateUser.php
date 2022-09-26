@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Cryptocli\Cli\Command;
 
+use Cryptocli\Services\Auth\SignUp;
+use Cryptocli\Services\Auth\SignUpTypes;
 use Cryptocli\Services\Register\CreateAccount;
 use Cryptocli\Services\Register\CreateNewUser;
+use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,7 +25,10 @@ class CreateUser extends Command
 {
     public function __construct(
         private readonly CreateAccount $createAccount,
-        private readonly CreateNewUser $createNewUser
+        private readonly CreateNewUser $createNewUser,
+        private readonly SignUpTypes $signUp,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly LoggerInterface $logger
     )
     {
         parent::__construct();
@@ -45,11 +52,23 @@ class CreateUser extends Command
         $date = \DateTime::createFromFormat('Y-m-d', $input->getOption('date'));
         $phone = $input->getOption('phone');
         $address = $input->getOption('address');
-        $userData = new \Cryptocli\DTO\CreateUser($name, $securityCode, $identification, $date, $phone, $address);
-        $user = $this->createNewUser->create($userData);
-        $this->createAccount->create($user->getId());
-        $output->writeln('account was created!');
+        $this->entityManager->beginTransaction();
+        try {
+            $userData = new \Cryptocli\DTO\CreateUser($name, $securityCode, $identification, $date, $phone, $address);
+            $user = $this->createNewUser->create($userData);
+            $this->createAccount->create($user->getId());
+            $this->signUp->createSignUp($user->getId(), '123');
+            $this->entityManager->commit();
+            $output->writeln('account was created!');
 
-        return self::SUCCESS;
+            return self::SUCCESS;
+        } catch (\Exception $err) {
+            $this->entityManager->rollback();
+            $this->logger->info('operação não concluida');
+            $this->logger->warning($err->getMessage());
+            $output->writeln('erro ao executar commando');
+
+            return self::FAILURE;
+        }
     }
 }

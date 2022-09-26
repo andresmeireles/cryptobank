@@ -4,7 +4,7 @@ namespace Cryptocli\Services\Register;
 
 use Cryptocli\Services\ServiceError;
 
-enum RegisterErrors implements ServiceError
+enum RegisterErrors
 {
     case USER_NOT_FOUND;
 

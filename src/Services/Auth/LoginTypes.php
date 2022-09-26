@@ -4,7 +4,7 @@ namespace Cryptocli\Services\Auth;
 
 use Cryptocli\Services\ServiceError;
 
-interface AuthTypes
+interface LoginTypes
 {
     public function withUserAndPassword(string $user, string $password): string|ServiceError;
 
