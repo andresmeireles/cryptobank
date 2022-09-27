@@ -10,6 +10,8 @@ use Cryptocli\Repository\Interfaces\AccountRepository;
 use Cryptocli\Repository\Interfaces\AuthRepository;
 use Cryptocli\Repository\Interfaces\UserRepositoryInterface;
 use Cryptocli\Repository\UserRepository;
+use Cryptocli\Services\Auth\FirebaseJwt;
+use Cryptocli\Services\Auth\Jwt;
 use Cryptocli\Services\Auth\SignUp;
 use Cryptocli\Services\Auth\SignUpTypes;
 use Cryptocli\Services\Register\CreateAccount;
@@ -44,4 +46,5 @@ return [
     CreateNewUser::class => fn (Container $container) => $container->get(NewUser::class),
     CreateAccount::class => fn (Container $container) => $container->get(NewAccount::class),
     SignUpTypes::class => fn (Container $container) => $container->get(SignUp::class),
+    Jwt::class => fn () => new FirebaseJwt($_ENV['JWT_SECRET'], 'HS256'),
 ];

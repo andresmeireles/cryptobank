@@ -45,6 +45,9 @@ class User
     #[OneToOne(mappedBy: 'user', targetEntity: Auth::class)]
     public Auth $auth;
 
+    #[OneToOne(mappedBy: 'user', targetEntity: AuthToken::class)]
+    public Auth $token;
+
     public static function create(string $nameCommercialName, string $cnpjCpf, string $rgIE, \DateTime $birthDateFoundationDate, string $phone, string $address): self
     {
         $user = new self();
