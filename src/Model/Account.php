@@ -3,11 +3,14 @@
 namespace Cryptocli\Model;
 
 use Cryptocli\Repository\AccountRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
@@ -27,12 +30,18 @@ class Account
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     public User $user;
 
+    #[Column(name: 'balance', type: 'float', nullable: false)]
+    public float $balance = 0.0;
+
     /**
-     * @return int|null
+     * @var Collection<AccountHistory>
      */
-    public function getId(): ?int
+    #[OneToMany(mappedBy: 'account', targetEntity: AccountHistory::class)]
+    private Collection $history;
+
+    public function __construct()
     {
-        return $this->id;
+        $this->history = new ArrayCollection();
     }
 
     public static function create(User $user): self
@@ -42,6 +51,21 @@ class Account
         $account->user = $user;
 
         return $account;
+    }
 
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return Collection<AccountHistory>
+     */
+    public function getHistory(): Collection
+    {
+        return $this->history;
     }
 }

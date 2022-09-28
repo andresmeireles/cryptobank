@@ -24,7 +24,6 @@ Todas as depedencias estão listadas em `compose.json`.
   * Transferência para outro correntista - O correntista poderá transferir um valor X para a conta de outro correntista do nosso banco, mas não para outros bancos pro enquanto.
 * Iremos desenvolver uma API Rest para o backend usando JSON para requisições e resposta.
 * É importante implementar algum protocolo de autenticação para comunicação do cliente com a API, pode ser Basic Auth (token e password).
-* Iremos ser uma criptomoeda, então todos os valores armazenados no banco de dados precisarão ser criptografados obrigatoriamente.
 * Precisamos gerar logs das operações de:
 * Login
 * Acesso as recursos (visualizações)

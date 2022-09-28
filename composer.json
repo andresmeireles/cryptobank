@@ -9,13 +9,15 @@
         "vlucas/phpdotenv": "^5.4",
         "symfony/cache": "^6.1",
         "symfony/var-dumper": "^6.1",
-        "monolog/monolog": "^3.2"
+        "monolog/monolog": "^3.2",
+        "firebase/php-jwt": "^6.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^4.27",
         "phpstan/phpstan": "^1.8",
-        "doctrine/migrations": "^3.5"
+        "doctrine/migrations": "^3.5",
+        "phpro/grumphp": "^1.13"
     },
     "license": "MIT",
     "autoload": {
@@ -34,5 +36,10 @@
             "name": "André Meireles",
             "email": "andre2meireles@gmail.com"
         }
-    ]
+    ],
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp": true
+        }
+    }
 }

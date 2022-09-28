@@ -32,6 +32,9 @@ class SignUpTest extends TestCase
         parent::setUp();
     }
 
+    /**
+     * @covers \Cryptocli\Services\Auth\SignUp::createSignUp
+     */
     public function testCreateSignUp(): void
     {
         $user = $this->createMock(User::class);
@@ -43,6 +46,9 @@ class SignUpTest extends TestCase
         self::assertInstanceOf(Auth::class, $result);
     }
 
+    /**
+     * @covers \Cryptocli\Services\Auth\SignUp::createSignUp
+     */
     public function testPassword(): void
     {
         $user = $this->createMock(User::class);

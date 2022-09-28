@@ -25,8 +25,20 @@ interface RepositoryInterface
     public function findBy(array $criteria);
 
     /**
+     * @param array $criteria
+     * @return T|null
+     */
+    public function findOneBy(array $criteria);
+
+    /**
      * @param T $object
      * @return T
      */
     public function create($object);
+
+    /**
+     * @param T $object
+     * @return T
+     */
+    public function update($object);
 }

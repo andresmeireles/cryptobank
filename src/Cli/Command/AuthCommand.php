@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cryptocli\Cli\Command;
 
+use Cryptocli\Cli\Cli;
+use Cryptocli\Cli\CommandInput;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -12,7 +14,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class AuthCommand extends Command
 {
     public function __construct(
-        private readonly Command $command
+        private readonly Command $command,
+        private readonly Cli $cli,
     )
     {
         $this->setDescription($this->command->getDescription());
@@ -34,6 +37,12 @@ final class AuthCommand extends Command
             $output->writeln('auth fail');
 
             return Command::INVALID;
+        }
+        $commandInput = new CommandInput('auth:validate', ['token' => $auth]);
+        $command = $this->cli->executeCommand($commandInput);
+        if ($command->statusCode !== self::SUCCESS) {
+            $output->writeln('auth failed');
+            return self::FAILURE;
         }
 
         return $this->command->execute($input, $output);

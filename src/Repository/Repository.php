@@ -33,4 +33,20 @@ class Repository extends EntityRepository
 
         return $object;
     }
+
+    /**
+     * @param T $object
+     * @throws \InvalidArgumentException
+     * @return T
+     */
+    public function update($object)
+    {
+        if ($object->getId() === null) {
+            throw new \InvalidArgumentException('non saved object cannot be update');
+        }
+
+        $this->_em->flush();
+
+        return $object;
+    }
 }

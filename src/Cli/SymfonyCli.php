@@ -31,7 +31,7 @@ class SymfonyCli implements Cli
                 throw new \LogicException('some commands are invalid');
             }
             if ($commandInstance instanceof Authable) {
-                $commandInstance = new AuthCommand($commandInstance);
+                $commandInstance = new AuthCommand($commandInstance, $this);
             }
             $app->add($commandInstance);
         }
@@ -45,7 +45,7 @@ class SymfonyCli implements Cli
         $app->run();
     }
 
-    public function executeCommand(CommandInput $command): string
+    public function executeCommand(CommandInput $command): CommandResult
     {
         $app = $this->bootstrap();
         $app->setAutoExit(false);
@@ -55,8 +55,8 @@ class SymfonyCli implements Cli
         ];
         $arrayInput = new ArrayInput($input);
         $output = new BufferedOutput();
-        $app->run($arrayInput, $output);
+        $code = $app->run($arrayInput, $output);
 
-        return $output->fetch();
+        return new CommandResult($code, $output->fetch());
     }
 }
