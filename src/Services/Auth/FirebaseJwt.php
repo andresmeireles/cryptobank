@@ -16,25 +16,19 @@ class FirebaseJwt implements Jwt
     {
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function encode(array $payload, int $expiresAt = 3600): string
+    public function encode(JwtPayload $payload, int $expiresAt = 3600): string
     {
-        $payload['expiresAt'] = (new \DateTimeImmutable())->modify(sprintf('+%s seconds', $expiresAt))->getTimestamp();
-
-        return JWTFirebase::encode($payload, $this->key, $this->algo);
+        return JWTFirebase::encode($payload->toArray(), $this->key, $this->algo);
     }
 
-    public function decodeAsStdClass(string $jwt): \stdClass
+    public function decode(string $jwt): JwtPayload
     {
-        return JWTFirebase::decode($jwt, new Key($this->key, $this->algo));
-    }
+        $payload = JWTFirebase::decode($jwt, new Key($this->key, $this->algo));
+        if ($payload->user === null || $payload->expiresAt === null) {
+            throw new \InvalidArgumentException('invalid jwt');
+        }
+        $timestampToDateTime = (new \DateTime())->setTimestamp($payload->expiresAt);
 
-    public function decodeAsArray(string $jwt): array
-    {
-        $decode = $this->decodeAsStdClass($jwt);
-
-        return (array) $decode;
+        return new JwtPayload($payload->user, $timestampToDateTime);
     }
 }

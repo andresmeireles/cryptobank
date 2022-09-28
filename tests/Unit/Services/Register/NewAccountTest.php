@@ -25,17 +25,23 @@ class NewAccountTest extends TestCase
         $this->createAccount = new NewAccount($this->accountRepository, $this->userRepository, $this->createMock(LoggerInterface::class));
     }
 
+    /**
+     * @covers \Cryptocli\Services\Register\NewAccount::create
+     */
     public function testCreate(): void
     {
         $user = User::create('a', 'a', 'a', new \DateTime(), 'q', 'q');
         $this->userRepository->method('find')->willReturn($user);
         $this->accountRepository->method('create')->willReturn(Account::create($user));
-        $this->accountRepository->method('findBy')->willReturn(null);
+        $this->accountRepository->method('findBy')->willReturn([]);
         $result = $this->createAccount->create(1);
 
         self::assertInstanceOf(Account::class, $result);
     }
 
+    /**
+     * @covers \Cryptocli\Services\Register\NewAccount::create
+     */
     public function testTwoNumbersAccont(): void
     {
         $user = User::create('a', 'a', 'a', new \DateTime(), 'q', 'q');

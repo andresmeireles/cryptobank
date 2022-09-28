@@ -24,6 +24,9 @@ class NewUserTest extends TestCase
         $this->newUser = new NewUser($this->userRepository);
     }
 
+    /**
+     * @covers \Cryptocli\Services\Register\NewUser::create
+     */
     public function testCreate(): void
     {
         $userData = new CreateUser(

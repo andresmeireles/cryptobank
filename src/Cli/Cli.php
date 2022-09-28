@@ -6,5 +6,5 @@ interface Cli
 {
     public function allCommands(): void;
 
-    public function executeCommand(CommandInput $command): string;
+    public function executeCommand(CommandInput $command): CommandResult;
 }

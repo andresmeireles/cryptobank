@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace Cryptocli\Model;
 
 use Cryptocli\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
@@ -45,8 +48,16 @@ class User
     #[OneToOne(mappedBy: 'user', targetEntity: Auth::class)]
     public Auth $auth;
 
-    #[OneToOne(mappedBy: 'user', targetEntity: AuthToken::class)]
-    public Auth $token;
+    /**
+     * @var Collection<AuthToken>
+     */
+    #[OneToMany(mappedBy: 'user', targetEntity: AuthToken::class)]
+    private Collection $token;
+
+    public function __construct()
+    {
+        $this->token = new ArrayCollection();
+    }
 
     public static function create(string $nameCommercialName, string $cnpjCpf, string $rgIE, \DateTime $birthDateFoundationDate, string $phone, string $address): self
     {
@@ -64,5 +75,13 @@ class User
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return Collection<AuthToken>
+     */
+    public function getToken(): Collection
+    {
+        return $this->token;
     }
 }

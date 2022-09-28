@@ -3,6 +3,7 @@
 namespace Test\Unit\Services\Auth;
 
 use Cryptocli\Services\Auth\FirebaseJwt;
+use Cryptocli\Services\Auth\JwtPayload;
 use PHPUnit\Framework\TestCase;
 
 class FirebaseJwtTest extends TestCase
@@ -14,41 +15,50 @@ class FirebaseJwtTest extends TestCase
         $this->firebaseJwt = new FirebaseJwt('o', 'HS256');
     }
 
+    /**
+     * @covers \Cryptocli\Services\Auth\FirebaseJwt::encode
+     */
     public function testEncode(): void
     {
-        $result = $this->firebaseJwt->encode(['user' => 1], 20);
+        $result = $this->firebaseJwt->encode(new JwtPayload(1));
 
         self::assertIsString($result);
     }
 
+    /**
+     * @covers \Cryptocli\Services\Auth\FirebaseJwt::decode
+     * @covers \Cryptocli\Services\Auth\FirebaseJwt::encode
+     */
     public function testEncodeWithDefaultTimestamp(): void
     {
-        $jwt = $this->firebaseJwt->encode(['user' => 1]);
+        $jwt = $this->firebaseJwt->encode(new JwtPayload(1));
         $time = (new \DateTime())->modify(sprintf('+%s seconds', 3600))->getTimestamp();
-        $result = $this->firebaseJwt->decodeAsArray($jwt);
+        $result = $this->firebaseJwt->decode($jwt);
 
-        self::assertSame($result['expiresAt'], $time);
+        self::assertSame($result->expiresAt->getTimestamp(), $time);
     }
 
-    public function testDecodeAsArray(): void
+    /**
+     * @covers \Cryptocli\Services\Auth\FirebaseJwt::decode
+     * @covers \Cryptocli\Services\Auth\FirebaseJwt::encode
+     */
+    public function testDecode(): void
     {
-        $token = ['user' => 1];
-        $jwt = $this->firebaseJwt->encode($token, 30);
-        $token = ['user' => 1, 'expiresAt' => (new \DateTime())->modify(sprintf('+%s seconds', 30))->getTimestamp()];
-        $result = $this->firebaseJwt->decodeAsArray($jwt);
+        $jwt = $this->firebaseJwt->encode(new JwtPayload(1));
+        $result = $this->firebaseJwt->decode($jwt);
 
-        self::assertSame($result, $token);
+        self::assertInstanceOf(JwtPayload::class, $result);
     }
 
-    public function testDecodeAsStdClass(): void
+    /**
+     * @covers \Cryptocli\Services\Auth\FirebaseJwt::decode
+     */
+    public function testDecodeArray(): void
     {
-        $token = ['user' => 1];
-        $stdClass = new \stdClass;
-        $stdClass->user = 1;
-        $stdClass->expiresAt = (new \DateTime())->modify(sprintf('+%s seconds', 30))->getTimestamp();
-        $jwt = $this->firebaseJwt->encode($token, 30);
-        $result = $this->firebaseJwt->decodeAsStdClass($jwt);
+        $payload = new JwtPayload(1);
+        $jwt = $this->firebaseJwt->encode($payload);
+        $result = $this->firebaseJwt->decode($jwt);
 
-        self::assertSame([$result->user, $result->expiresAt], [$stdClass->user, $stdClass->expiresAt]);
+        self::assertSame($result->toArray(), $payload->toArray());
     }
 }
