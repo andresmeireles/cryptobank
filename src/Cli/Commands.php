@@ -2,7 +2,8 @@
 
 namespace Cryptocli\Cli;
 
-use Cryptocli\Cli\Commands\MessageCommand;
+use Cryptocli\Cli\Commands\AddCustomer;
+use Cryptocli\Cli\Commands\Message;
 
 class Commands
 {
@@ -10,7 +11,8 @@ class Commands
      * @var class-string[]|string[]
      */
     private array $symfonyCommands = [
-        MessageCommand::class
+        Message::class,
+        AddCustomer::class
     ];
 
     /**

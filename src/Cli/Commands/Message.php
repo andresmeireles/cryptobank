@@ -15,11 +15,11 @@ use Symfony\Component\Console\Output\OutputInterface;
     description: 'a simple message command',
     hidden: false
 )]
-class MessageCommand extends Command
+class Message extends Command
 {
     protected const NAME = 'message';
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->addOption('message', 'm',  InputOption::VALUE_REQUIRED, 'message');
         $this->addUsage('-m kek');

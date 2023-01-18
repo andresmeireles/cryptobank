@@ -2,7 +2,7 @@
 
 namespace Cryptocli;
 
-use Cryptocli\Cli\Commands\MessageCommand;
+use Cryptocli\Cli\Commands\Message;
 
 class Commands
 {
@@ -10,7 +10,7 @@ class Commands
      * @var string-class[]
      */
     private array $commands = [
-        MessageCommand::class
+        Message::class
     ];
 
     public function getCommands(): array
