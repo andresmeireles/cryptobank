@@ -7,7 +7,7 @@ use Cryptocli\Cli\SymfonyCli;
 use DI\Container;
 
 return [
-    Cli::class => function (Container $container) {
+    Cli::class => static function (Container $container) {
         $commands = new Cryptocli\Cli\Commands();
         return new SymfonyCli($container, $commands->getSymfonyCommands());
     }

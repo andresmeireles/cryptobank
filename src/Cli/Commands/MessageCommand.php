@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Cli\Command;
+namespace Cryptocli\Cli\Commands;
 
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;

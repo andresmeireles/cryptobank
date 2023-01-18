@@ -2,7 +2,7 @@
 
 namespace Cryptocli\Cli;
 
-use Cryptocli\Cli\Command\MessageCommand;
+use Cryptocli\Cli\Commands\MessageCommand;
 
 class Commands
 {
