@@ -12,6 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 abstract class Repository extends EntityRepository
 {
+    /**
+    * @psalm-param class-string<T> $className
+    */ 
     public function __construct(EntityManagerInterface $em, string $className)
     {
         $classMetadata = $em->getClassMetadata($className);

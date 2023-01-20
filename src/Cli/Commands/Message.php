@@ -23,7 +23,6 @@ class Message extends Command
     {
         $this->addOption('message', 'm',  InputOption::VALUE_REQUIRED, 'message');
         $this->addUsage('-m kek');
-
         parent::configure();
     }
 
@@ -32,12 +31,9 @@ class Message extends Command
         $message = $input->getOption('message');
         if ($message === null) {
             $output->writeln('no message send');
-
             return Command::FAILURE;
         }
-
         $output->writeln('uma mensagem foi escrita aqui: '. $message);
-
         return Command::SUCCESS;
     }
 }

@@ -24,10 +24,7 @@ class User
     #[Column(name: 'name', type: 'string', nullable: false)]
     public string $name;
 
-    #[Column(name: 'commercial_name', type: 'string', nullable: false)]
-    public string $commercialName;
-
-    #[Column(name: 'cnpj_cpf', type: 'string', nullable: false)]
+    #[Column(name: 'cnpj_cpf', type: 'string', unique: true, nullable: false)]
     public string $cnpjCpf;
 
     #[Column(name: 'rg_ie', type: 'string', nullable: false)]
@@ -44,4 +41,21 @@ class User
 
     #[OneToOne(mappedBy: 'user', targetEntity: Account::class)]
     public Account $account;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public static function create(string $name, string $cpf, string $rg, \DateTime $birthDate, string $phone, string $address): self
+    {
+        $user = new self();
+        $user->name = $name;
+        $user->cnpjCpf = $cpf;
+        $user->rgIE = $rg;
+        $user->birthDateFoundationDate = $birthDate;
+        $user->phone = $phone;
+        $user->address = $address;
+        return $user;
+    }
 }

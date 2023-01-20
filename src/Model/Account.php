@@ -29,11 +29,16 @@ class Account
     #[JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     public User $user;
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public static function create(User $user): self
+    {
+        $acc = new self();
+        $acc->number = (string) random_int(111111, 999999);
+        $acc->user = $user;
+        return $acc;
     }
 }

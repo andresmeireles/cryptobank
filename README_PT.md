@@ -21,6 +21,8 @@ Todas as depedencias estão listadas em `compose.json`.
     * Depósito - O correntista irá adicionar um valor X na sua conta.
     * Retirada - O correntista poderá retirar um valor X da sua conta.
     * Transferência para outro correntista - O correntista poderá transferir um valor X para a conta de outro correntista do nosso banco, mas não para outros bancos pro enquanto.
+* Fazer comandos que precisam de autenticação
+* Fazer comandos que devolvam respostas em json
 * Desenvolver uma api rest
 * Desenvolver uma api graphql
 * Desenvover um frontend.
