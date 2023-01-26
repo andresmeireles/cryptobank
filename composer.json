@@ -3,6 +3,7 @@
     "description": "A cli for imaginary crypto bank",
     "type": "project",
     "require": {
+        "ext-sodium": "*",
         "php-di/php-di": "^6.4",
         "symfony/console": "^6.1",
         "doctrine/orm": "^2.13",

@@ -10,8 +10,8 @@ class SodiumEncrypt implements EncryptInterface
 {
     public function encrypt(string $value): string
     {
-        $key = $_ENV['SECRET_KEY'];
-        $nonce = $_ENV['SECRET_NONCE'];
+        $key = hex2bin($_ENV['SECRET_KEY']);
+        $nonce = hex2bin($_ENV['SECRET_NONCE']);
         return sodium_crypto_secretbox($value, $nonce, $key);
     }
 }
