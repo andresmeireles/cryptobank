@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Test\Action;
+namespace Cryptocli\Test\Action;
 
 use Cryptocli\Action\ActonErrors;
 use Cryptocli\Action\CreateUser;

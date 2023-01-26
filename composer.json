@@ -28,7 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Test\\": "tests/"
+            "Cryptcli\\Test\\": "tests/"
         }
     },
     "authors": [

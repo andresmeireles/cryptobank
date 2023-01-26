@@ -13,7 +13,9 @@ use Cryptocli\Repository\Api\AccountRepositoryInterface;
 use Cryptocli\Repository\Api\UserRepositoryInterface;
 use Cryptocli\Repository\UserRepository;
 use Cryptocli\Utils\Api\CrytoLoggerInterface;
+use Cryptocli\Utils\Api\EncryptInterface;
 use Cryptocli\Utils\Logger;
+use Cryptocli\Utils\SodiumEncrypt;
 use DI\Container;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -34,4 +36,5 @@ return array(
     // repositories
     UserRepositoryInterface::class => static fn (Container $c) => new UserRepository($c->get(EntityManagerInterface::class)),
     AccountRepositoryInterface::class => static fn (Container $c) => new AccountRepository($c->get(EntityManagerInterface::class)),
+    EncryptInterface::class => static fn () => new SodiumEncrypt(),
 );
