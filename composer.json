@@ -18,7 +18,10 @@
         "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^4.27",
         "phpstan/phpstan": "^1.8",
-        "doctrine/migrations": "^3.5"
+        "doctrine/migrations": "^3.5",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan-doctrine": "^1.3",
+        "weirdan/doctrine-psalm-plugin": "^2.8"
     },
     "license": "MIT",
     "autoload": {
@@ -37,5 +40,18 @@
             "name": "André Meireles",
             "email": "andre2meireles@gmail.com"
         }
-    ]
+    ],
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "phpstan": {
+            "includes": [
+                "extension.neon"
+            ]
+        }
+    }
+
 }
