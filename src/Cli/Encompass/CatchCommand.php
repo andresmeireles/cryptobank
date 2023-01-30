@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Cryptocli\Cli\Encompass;
 
 use Cryptocli\Cli\Api\Catchable;
-use Cryptocli\Exception\CliException;
+use Cryptocli\Exception\CliMessageException;
 use Cryptocli\Utils\Api\CrytoLoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -30,6 +30,7 @@ class CatchCommand extends Command {
         $this->setAliases($this->command->getAliases());
         $this->setDefinition($this->command->getDefinition());
         $this->setDescription($this->command->getDescription());
+        array_map(fn ($usage) => $this->addUsage($usage), $this->command->getUsages());
         $this->command->configure();
     }
 
@@ -37,6 +38,10 @@ class CatchCommand extends Command {
     {
         try {
             return $this->command->execute($input, $output);
+        } catch (CliMessageException $err) {
+            $this->logger->{$err->cliExceptionWeight->toString()}($err->getMessage());
+            $output->writeln($err->errorMessage);
+            return Command::FAILURE;
         } catch (\Exception $err) {
             $this->logger->error($err->getMessage());
             $output->writeln('Error on command execution, check log for more information');

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Cryptocli\Cli;
 
+use Cryptocli\Cli\Api\Authable;
 use Cryptocli\Cli\Api\Catchable;
+use Cryptocli\Cli\Encompass\AuthenticatedCommand;
 use Cryptocli\Cli\Encompass\CatchCommand;
 use Cryptocli\Utils\Api\CrytoLoggerInterface;
 use DI\Container;
@@ -29,9 +31,11 @@ class SymfonyCli implements Cli
         $app = new Application();
         foreach ($this->commands as $command) {
             $class = $this->container->get($command);
+            if ($class instanceof Authable) {
+                $class = new AuthenticatedCommand($class);
+            }
             if ($class instanceof Catchable) {
-                $app->add(new CatchCommand($class, $this->container->get(CrytoLoggerInterface::class)));
-                continue;
+                $class = new CatchCommand($class, $this->container->get(CrytoLoggerInterface::class)); 
             }
             $app->add($class);
         }
