@@ -10,7 +10,7 @@ return [
     ],
 
     'migrations_paths' => [
-        'Cryptocli\Migrations' => __DIR__ . '/../migration',
+        'CryptoBank\Migrations' => __DIR__ . '/../migration',
     ],
 
     'all_or_nothing' => true,

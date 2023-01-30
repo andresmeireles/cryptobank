@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Utils;
+namespace CryptoBank\Utils;
 
-use Cryptocli\Utils\Api\DecryptInterface;
+use CryptoBank\Utils\Api\DecryptInterface;
 
 class SodiumDecrypt implements DecryptInterface
 {

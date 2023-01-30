@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Test\Action;
+namespace CryptoBank\Test\Action;
 
-use Cryptocli\Action\ActonErrors;
-use Cryptocli\Action\CreateUser;
-use Cryptocli\Repository\Api\AccountRepositoryInterface;
-use Cryptocli\Repository\Api\UserRepositoryInterface;
+use CryptoBank\Action\ActonErrors;
+use CryptoBank\Action\CreateUser;
+use CryptoBank\Repository\Api\AccountRepositoryInterface;
+use CryptoBank\Repository\Api\UserRepositoryInterface;
 use PHPUnit\Framework\TestCase;
 
 class CreateUserTest extends TestCase
@@ -22,7 +22,7 @@ class CreateUserTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Action\CreateUser::create
+     * @covers \CryptoBank\Action\CreateUser::create
      */
     public function testCreateUser(): void
     {
@@ -31,7 +31,7 @@ class CreateUserTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Action\CreateUser::create
+     * @covers \CryptoBank\Action\CreateUser::create
      */
     public function testCreateUserInvalidName(): void
     {
@@ -40,7 +40,7 @@ class CreateUserTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Action\CreateUser::validate
+     * @covers \CryptoBank\Action\CreateUser::validate
      */
     public function testValidationName(): void
     {
@@ -49,7 +49,7 @@ class CreateUserTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Action\CreateUser::validate
+     * @covers \CryptoBank\Action\CreateUser::validate
      */
     public function testValidationCpf(): void
     {
@@ -58,7 +58,7 @@ class CreateUserTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Action\CreateUser::validate
+     * @covers \CryptoBank\Action\CreateUser::validate
      */
     public function testValidationDate(): void
     {
@@ -67,7 +67,7 @@ class CreateUserTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Action\CreateUser::validate
+     * @covers \CryptoBank\Action\CreateUser::validate
      */
     public function testValidationPhone(): void
     {
@@ -76,7 +76,7 @@ class CreateUserTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Action\CreateUser::validate
+     * @covers \CryptoBank\Action\CreateUser::validate
      */
     public function testValidationEmail(): void
     {
@@ -85,7 +85,7 @@ class CreateUserTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Action\CreateUser::validate
+     * @covers \CryptoBank\Action\CreateUser::validate
      */
     public function testValidationRg(): void
     {

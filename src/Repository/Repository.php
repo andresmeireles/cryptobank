@@ -1,8 +1,8 @@
 <?php
 
-namespace Cryptocli\Repository;
+namespace CryptoBank\Repository;
 
-use Cryptocli\Exception\ItemNotFoundException;
+use CryptoBank\Exception\ItemNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Cli\Api;
+namespace CryptoBank\Cli\Api;
 
 interface Catchable
 {

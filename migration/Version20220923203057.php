@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Migrations;
+namespace CryptoBank\Migrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
@@ -14,7 +14,7 @@ final class Version20220923203057 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return 'create inital tables';
+        return 'create initial tables';
     }
 
     public function up(Schema $schema): void

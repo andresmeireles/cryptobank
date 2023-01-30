@@ -1,6 +1,6 @@
 <?php
 
-namespace Cryptocli\Cli;
+namespace CryptoBank\Cli;
 
 class CommandInput
 {

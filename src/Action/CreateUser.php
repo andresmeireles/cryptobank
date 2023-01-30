@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Action;
+namespace CryptoBank\Action;
 
-use Cryptocli\Action\Api\CreateJwtInterface;
-use Cryptocli\Action\Api\CreateUserInterface;
-use Cryptocli\Errors\Error;
-use Cryptocli\Errors\SystemError;
-use Cryptocli\Model\Account;
-use Cryptocli\Model\User;
-use Cryptocli\Repository\Api\AccountRepositoryInterface;
-use Cryptocli\Repository\Api\UserRepositoryInterface;
+use CryptoBank\Action\Api\CreateJwtInterface;
+use CryptoBank\Action\Api\CreateUserInterface;
+use CryptoBank\Errors\Error;
+use CryptoBank\Errors\SystemError;
+use CryptoBank\Model\Account;
+use CryptoBank\Model\User;
+use CryptoBank\Repository\Api\AccountRepositoryInterface;
+use CryptoBank\Repository\Api\UserRepositoryInterface;
 use Respect\Validation\Validator as v;
 
 class CreateUser implements CreateUserInterface

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Model;
+namespace CryptoBank\Model;
 
-use Cryptocli\Repository\AccountRepository;
+use CryptoBank\Repository\AccountRepository;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;

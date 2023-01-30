@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Cli\Encompass;
+namespace CryptoBank\Cli\Encompass;
 
-use Cryptocli\Cli\Api\Catchable;
-use Cryptocli\Exception\CliMessageException;
-use Cryptocli\Utils\Api\CrytoLoggerInterface;
+use CryptoBank\Cli\Api\Catchable;
+use CryptoBank\Exception\CliException;
+use CryptoBank\Utils\Api\CryptoLoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class CatchCommand extends Command {
     private readonly Command $command;
-    private readonly CrytoLoggerInterface $logger;
+    private readonly CryptoLoggerInterface $logger;
 
-    public function __construct(Command $command, CrytoLoggerInterface $logger)
+    public function __construct(Command $command, CryptoLoggerInterface $logger)
     {
         if (!$command instanceof Catchable) {
             throw new \Exception('this is not a catchable command');

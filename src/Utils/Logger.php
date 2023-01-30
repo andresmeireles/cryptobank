@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Utils;
+namespace CryptoBank\Utils;
 
-use Cryptocli\Utils\Api\CrytoLoggerInterface;
+use CryptoBank\Utils\Api\CryptoLoggerInterface;
 use Monolog\Handler\StreamHandler;
 use Monolog\Level;
 use Monolog\Logger as MonoLogger;
 
-class Logger implements CrytoLoggerInterface
+class Logger implements CryptoLoggerInterface
 {
     private const LOGGER_PATH = __DIR__ . '/../../var/log';
     public function createLogger(string $name, ?Level $level = null): MonoLogger

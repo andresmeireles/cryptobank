@@ -1,6 +1,6 @@
 <?php
 
-namespace Cryptocli\Cli\Api;
+namespace CryptoBank\Cli\Api;
 
 interface Authable
 {

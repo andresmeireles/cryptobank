@@ -1,11 +1,11 @@
 <?php
 
-namespace Cryptocli\Repository\Api;
+namespace CryptoBank\Repository\Api;
 
-use Cryptocli\Model\User;
+use CryptoBank\Model\User;
 
 /**
- * @extends RepositoryInterface<\Cryptocli\Model\User>
+ * @extends RepositoryInterface<\CryptoBank\Model\User>
  */
 interface UserRepositoryInterface extends RepositoryInterface
 {

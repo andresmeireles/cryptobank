@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Action;
+namespace CryptoBank\Action;
 
-use Cryptocli\Action\Api\CreateJwtInterface;
+use CryptoBank\Action\Api\CreateJwtInterface;
 use Lcobucci\JWT\Encoding\ChainedFormatter;
 use Lcobucci\JWT\Token\Builder;
 use Lcobucci\JWT\Encoding\JoseEncoder;

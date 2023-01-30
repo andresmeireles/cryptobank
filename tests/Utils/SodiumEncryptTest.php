@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Test\Utils;
+namespace CryptoBank\Test\Utils;
 
-use Cryptocli\Utils\SodiumEncrypt;
+use CryptoBank\Utils\SodiumEncrypt;
 use PHPUnit\Framework\TestCase;
 
 class SodiumEncryptTest extends TestCase
@@ -17,7 +17,7 @@ class SodiumEncryptTest extends TestCase
     }
      
     /**
-     * @covers \Cryptocli\Utils\SodiumEncrypt::encrypt
+     * @covers \CryptoBank\Utils\SodiumEncrypt::encrypt
      */
     public function testEncrypt(): void
     {

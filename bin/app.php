@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-use Cryptocli\Cli\Cli;
+use CryptoBank\Cli\Cli;
 
 require __DIR__ . '/../bootstrap/container_bootstrap.php';
 

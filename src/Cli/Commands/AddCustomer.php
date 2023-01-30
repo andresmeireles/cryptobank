@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Cli\Commands;
+namespace CryptoBank\Cli\Commands;
 
-use Cryptocli\Action\Api\CreateUserInterface;
-use Cryptocli\Cli\Api\Catchable;
-use Cryptocli\Errors\Error;
+use CryptoBank\Action\Api\CreateUserInterface;
+use CryptoBank\Cli\Api\Catchable;
+use CryptoBank\Errors\Error;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -33,9 +33,10 @@ class AddCustomer extends Command implements Catchable
         $this->addOption('name', mode: InputOption::VALUE_REQUIRED, description: 'name or trade name');
         $this->addOption('rg', mode: InputOption::VALUE_REQUIRED, description: 'rg or ie code');
         $this->addOption('cpf', null, InputOption::VALUE_REQUIRED, 'cpf or cnpj');
-        $this->addOption('birth_date', null, InputOption::VALUE_REQUIRED, 'birthdate or foundation date in yyyy-mm-dd format');
+        $this->addOption('birth_date', null, InputOption::VALUE_REQUIRED, 'birth date or foundation date in yyyy-mm-dd format');
         $this->addOption('phone', null, InputOption::VALUE_REQUIRED, 'phone number');
         $this->addOption('email', null, InputOption::VALUE_REQUIRED, 'email');
+        $this->addUsage('add_user --name=NAME --rg=RG_NUMBER --cpf=CPF_NUMBER --birth_date=2020-10-12 --phone=PHONE_NUMBER --email=EMAIL');
         parent::configure();
     }
 

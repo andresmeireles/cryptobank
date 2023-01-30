@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Utils\Api;
+namespace CryptoBank\Utils\Api;
 
 use Monolog\Level;
 use Monolog\Logger;
 
-interface CrytoLoggerInterface
+interface CryptoLoggerInterface
 {
     public function createLogger(string $name, ?Level $level = null): Logger;
 

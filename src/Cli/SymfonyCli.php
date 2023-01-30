@@ -2,13 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Cli;
+namespace CryptoBank\Cli;
 
-use Cryptocli\Cli\Api\Authable;
-use Cryptocli\Cli\Api\Catchable;
-use Cryptocli\Cli\Encompass\AuthenticatedCommand;
-use Cryptocli\Cli\Encompass\CatchCommand;
-use Cryptocli\Utils\Api\CrytoLoggerInterface;
+use CryptoBank\Cli\Api\Catchable;
+use CryptoBank\Cli\Encompass\AuthenticatedCommand;
+use CryptoBank\Cli\Encompass\CatchCommand;
+use CryptoBank\Utils\Api\CryptoLoggerInterface;
 use DI\Container;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
@@ -35,7 +34,7 @@ class SymfonyCli implements Cli
                 $class = new AuthenticatedCommand($class);
             }
             if ($class instanceof Catchable) {
-                $class = new CatchCommand($class, $this->container->get(CrytoLoggerInterface::class)); 
+                $class = new CatchCommand($class, $this->container->get(CryptoLoggerInterface::class)); 
             }
             $app->add($class);
         }

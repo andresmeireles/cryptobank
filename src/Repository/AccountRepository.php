@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Repository;
+namespace CryptoBank\Repository;
 
-use Cryptocli\Model\Account;
-use Cryptocli\Repository\Api\AccountRepositoryInterface;
+use CryptoBank\Model\Account;
+use CryptoBank\Repository\Api\AccountRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**

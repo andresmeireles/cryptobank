@@ -1,13 +1,13 @@
 <?php
 
-namespace Cryptocli\Cli;
+namespace CryptoBank\Cli;
 
-use Cryptocli\Cli\Commands\AddCustomer;
-use Cryptocli\Cli\Commands\Message;
+use CryptoBank\Cli\Commands\AddCustomer;
+use CryptoBank\Cli\Commands\Message;
 
 class Commands
 {
-    private const COMMAND_NAMESPACE = "Cryptocli\\Cli\\Commands\\";
+    private const COMMAND_NAMESPACE = "CryptoBank\\Cli\\Commands\\";
 
     /**
      * @return class-string[]|string[]

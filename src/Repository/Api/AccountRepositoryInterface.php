@@ -1,8 +1,8 @@
 <?php
 
-namespace Cryptocli\Repository\Api;
+namespace CryptoBank\Repository\Api;
 
-use Cryptocli\Model\Account;
+use CryptoBank\Model\Account;
 
 /**
  * @extends RepositoryInterface<Account>

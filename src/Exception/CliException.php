@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Exception;
+namespace CryptoBank\Exception;
 
-use Cryptocli\Errors\Error;
+use CryptoBank\Errors\Error;
 
 class CliException extends \Exception
 {

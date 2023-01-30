@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Cli\Encompass;
+namespace CryptoBank\Cli\Encompass;
 
-use Cryptocli\Cli\Api\Catchable;
-use Cryptocli\Exception\CliExceptionWeight;
-use Cryptocli\Exception\CliMessageException;
+use CryptoBank\Cli\Api\Catchable;
+use CryptoBank\Exception\CliExceptionWeight;
+use CryptoBank\Exception\CliMessageException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;

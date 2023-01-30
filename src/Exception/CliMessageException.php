@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Exception;
+namespace CryptoBank\Exception;
 
 class CliMessageException extends \Exception
 {

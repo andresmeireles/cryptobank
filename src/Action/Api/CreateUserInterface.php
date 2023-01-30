@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Action\Api;
+namespace CryptoBank\Action\Api;
 
-use Cryptocli\Errors\Error;
+use CryptoBank\Errors\Error;
 
 interface CreateUserInterface
 {

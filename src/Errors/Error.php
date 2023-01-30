@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Errors;
+namespace CryptoBank\Errors;
 
 interface Error
 {

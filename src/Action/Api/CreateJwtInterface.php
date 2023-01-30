@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Action\Api;
+namespace CryptoBank\Action\Api;
 
 interface CreateJwtInterface
 {

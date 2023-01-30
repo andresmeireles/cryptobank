@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Utils;
+namespace CryptoBank\Utils;
 
-use Cryptocli\Utils\Api\EncryptInterface;
+use CryptoBank\Utils\Api\EncryptInterface;
 
 class SodiumEncrypt implements EncryptInterface
 {

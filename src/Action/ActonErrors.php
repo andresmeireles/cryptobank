@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Action;
+namespace CryptoBank\Action;
 
-use Cryptocli\Errors\Error;
+use CryptoBank\Errors\Error;
 
 enum ActonErrors implements Error
 {

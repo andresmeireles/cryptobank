@@ -1,8 +1,8 @@
 <?php
 
-namespace Cryptocli\Repository\Api;
+namespace CryptoBank\Repository\Api;
 
-use Cryptocli\Exception\ItemNotFoundException;
+use CryptoBank\Exception\ItemNotFoundException;
 
 /**
  * @template T of object

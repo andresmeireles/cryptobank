@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Utils\Api;
+namespace CryptoBank\Utils\Api;
 
 interface DecryptInterface
 {

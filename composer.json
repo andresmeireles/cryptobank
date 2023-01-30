@@ -1,5 +1,5 @@
 {
-    "name": "andresmeireles/cryptocli",
+    "name": "andresmeireles/cryptobank",
     "description": "A cli for imaginary crypto bank",
     "type": "project",
     "require": {
@@ -26,13 +26,13 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Cryptocli\\": "src/",
-            "Cryptocli\\Migration\\": "migration/"
+            "CryptoBank\\": "src/",
+            "CryptoBank\\Migration\\": "migration/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Cryptcli\\Test\\": "tests/"
+            "CryptoBank\\Test\\": "tests/"
         }
     },
     "authors": [

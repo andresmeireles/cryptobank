@@ -1,9 +1,9 @@
 <?php
 
-namespace Cryptocli\Test\Utils;
+namespace CryptoBank\Test\Utils;
 
-use Cryptocli\Utils\SodiumDecrypt;
-use Cryptocli\Utils\SodiumEncrypt;
+use CryptoBank\Utils\SodiumDecrypt;
+use CryptoBank\Utils\SodiumEncrypt;
 use PHPUnit\Framework\TestCase;
 
 class SodiumDecryptTest extends TestCase
@@ -16,7 +16,7 @@ class SodiumDecryptTest extends TestCase
     }
 
     /**
-     * @covers \Cryptocli\Utils\SodiumDecrypt::decrypt
+     * @covers \CryptoBank\Utils\SodiumDecrypt::decrypt
      */
     public function testDecrypt(): void
     {

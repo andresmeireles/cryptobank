@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cryptocli\Cli\Commands;
+namespace CryptoBank\Cli\Commands;
 
 use Cryptocli\Cli\Api\Authable;
 use Symfony\Component\Console\Attribute\AsCommand;
