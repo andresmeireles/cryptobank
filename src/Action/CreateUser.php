@@ -7,10 +7,11 @@ namespace CryptoBank\Action;
 use CryptoBank\Action\Api\CreateJwtInterface;
 use CryptoBank\Action\Api\CreateUserInterface;
 use CryptoBank\Errors\Error;
-use CryptoBank\Errors\SystemError;
 use CryptoBank\Model\Account;
+use CryptoBank\Model\Jwt;
 use CryptoBank\Model\User;
 use CryptoBank\Repository\Api\AccountRepositoryInterface;
+use CryptoBank\Repository\Api\JwtRepositoryInterface;
 use CryptoBank\Repository\Api\UserRepositoryInterface;
 use Respect\Validation\Validator as v;
 
@@ -19,6 +20,7 @@ class CreateUser implements CreateUserInterface
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
         private readonly AccountRepositoryInterface $accountRepository,
+        private readonly JwtRepositoryInterface $jwtRepository,
         private readonly CreateJwtInterface $createJwt,
     )
     {
@@ -31,10 +33,13 @@ class CreateUser implements CreateUserInterface
             return $validate;
         }
         $user = User::create($name, $cpf, $rg, new \DateTime($birthDate), $phone, $email);
-            $createdUser = $this->userRepository->create($user);
-            $account = Account::create($createdUser);
-            $this->accountRepository->create($account);
-            return $this->createJwt->create($createdUser->name);
+        $createdUser = $this->userRepository->create($user);
+        $account = Account::create($createdUser);
+        $this->accountRepository->create($account);
+        $jwt = $this->createJwt->create($createdUser->name);
+        $jwtToken = Jwt::create($createdUser, $jwt);
+        $this->jwtRepository->create($jwtToken);
+        return $jwt;
     }
 
     public function validate(string $name, string $cpf, string $rg, string $birthDate, string $phone, string $address): bool|Error

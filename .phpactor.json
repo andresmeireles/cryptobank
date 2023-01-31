@@ -1,0 +1,5 @@
+{
+  "php.version": 8.1,
+  "language_server_completion.trim_leading_dollar": true,
+  "completion_worse.experimantal": true
+}
