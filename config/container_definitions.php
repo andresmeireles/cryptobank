@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use CryptoBank\Action\Api\CreateJwtInterface;
 use CryptoBank\Action\Api\CreateUserInterface;
+use CryptoBank\Action\Auth\CreateUser;
 use CryptoBank\Action\CreateJwt;
-use CryptoBank\Action\CreateUser;
 use CryptoBank\Cli\Cli;
 use CryptoBank\Cli\SymfonyCli;
 use CryptoBank\Repository\AccountRepository;

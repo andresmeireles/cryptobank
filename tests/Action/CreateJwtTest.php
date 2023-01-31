@@ -16,7 +16,6 @@ class CreateJwtTest extends TestCase
         $this->createJwt = new CreateJwt();
     }
 
-
     /**
     * @covers \CryptoBank\Action\CreateJwt::create
     */

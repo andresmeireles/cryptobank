@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace CryptoBank\Action;
+namespace CryptoBank\Action\Auth;
 
 use CryptoBank\Action\Api\CreateJwtInterface;
 use CryptoBank\Action\Api\CreateUserInterface;
