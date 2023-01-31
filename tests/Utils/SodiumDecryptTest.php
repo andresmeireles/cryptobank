@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace CryptoBank\Test\Utils;
 
 use CryptoBank\Utils\SodiumDecrypt;
