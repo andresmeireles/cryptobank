@@ -15,6 +15,7 @@ enum ActonErrors implements Error
     case INVALID_ADDRESS;
     case INVALID_PHONE;
     case INVALID_RG;
+
     public function message(): string
     {
         return match($this) {

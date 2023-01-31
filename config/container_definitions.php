@@ -24,10 +24,7 @@ return array(
         $commands = new CryptoBank\Cli\Commands();
         return new SymfonyCli($container, $commands->getSymfonyCommands());
     },
-    EntityManagerInterface::class => function () {
-        require __DIR__ . '/../bootstrap/doctrine_bootstrap.php';
-        return $entityManager;
-    },
+    EntityManagerInterface::class => static fn () => require __DIR__ . '/../bootstrap/doctrine_bootstrap.php',
     // actions
     CreateUserInterface::class => static fn (Container $c) => $c->get(CreateUser::class),
     CreateJwtInterface::class => static fn () => new CreateJwt(),

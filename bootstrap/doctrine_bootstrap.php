@@ -1,5 +1,6 @@
 <?php
 
+use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 
@@ -21,4 +22,8 @@ $config = ORMSetup::createAttributeMetadataConfiguration(
     paths: $paths,
     isDevMode: $isDevMode,
 );
-$entityManager = EntityManager::create($dbParams, $config);
+
+$conn = DriverManager::getConnection($dbParams, $config);
+
+//$entityManager = EntityManager::create($dbParams, $config);
+return new EntityManager($conn, $config);

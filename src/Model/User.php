@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity(repositoryClass: UserRepository::class)]
-#[Table(name: 'user')]
+#[Table(name: 'users')]
 class User
 {
     #[Id]

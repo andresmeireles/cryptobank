@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\Table;
 
 #[Entity(repositoryClass: AccountRepository::class)]
-#[Table(name: 'account')]
+#[Table(name: 'accounts')]
 class Account
 {
     #[Id]

@@ -33,7 +33,7 @@ class CreateUser implements CreateUserInterface
         $user = User::create($name, $cpf, $rg, new \DateTime($birthDate), $phone, $email);
             $createdUser = $this->userRepository->create($user);
             $account = Account::create($createdUser);
-            $createdAccount = $this->accountRepository->create($account);
+            $this->accountRepository->create($account);
             return $this->createJwt->create($createdUser->name);
     }
 

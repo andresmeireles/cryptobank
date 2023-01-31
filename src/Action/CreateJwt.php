@@ -5,11 +5,7 @@ declare(strict_types=1);
 namespace CryptoBank\Action;
 
 use CryptoBank\Action\Api\CreateJwtInterface;
-use Lcobucci\JWT\Encoding\ChainedFormatter;
-use Lcobucci\JWT\Token\Builder;
-use Lcobucci\JWT\Encoding\JoseEncoder;
-use Lcobucci\JWT\Signer\Hmac\Sha256;
-use Lcobucci\JWT\Signer\Key\InMemory;
+use Firebase\JWT\JWT;
 
 class CreateJwt implements CreateJwtInterface
 {
@@ -19,18 +15,14 @@ class CreateJwt implements CreateJwtInterface
     }
     
     private function issueToken(string $userName): string
-    {
-        $builder = new Builder(new JoseEncoder(), new ChainedFormatter());
-        $algo = new Sha256();
-        $signkey = InMemory::plainText(random_bytes(32));
-        $now = new \DateTimeImmutable();
-        $token = $builder
-            ->issuedBy('me')
-            ->permittedFor('user')
-            ->identifiedBy($userName)
-            ->issuedAt($now)
-            ->getToken($algo, $signkey);
-        return $token->toString();
+    { 
+        $key = $_ENV['JWT_KEY'];
+       $tokenData = [
+            'iss' => 'andre',
+            'aud' => 'andre',
+            'uid' => $userName,
+        ];
+        return JWT::encode($tokenData, $key, self::ALGORITHM);
     }
 }
 

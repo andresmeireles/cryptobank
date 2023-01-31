@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace CryptoBank\Test\Action;
 
 use CryptoBank\Action\ActonErrors;
+use CryptoBank\Action\CreateJwt;
 use CryptoBank\Action\CreateUser;
+use CryptoBank\Model\User;
 use CryptoBank\Repository\Api\AccountRepositoryInterface;
 use CryptoBank\Repository\Api\UserRepositoryInterface;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +20,11 @@ class CreateUserTest extends TestCase
     {
         $ar = $this->createMock(AccountRepositoryInterface::class);
         $ur = $this->createMock(UserRepositoryInterface::class);
-        $this->createUser = new CreateUser(accountRepository: $ar, userRepository: $ur);
+        $user = new User();
+        $user->name = 'Andre';
+        $ur->method('create')->willReturn($user);
+        $ct = new CreateJwt();
+        $this->createUser = new CreateUser($ur, $ar, $ct);
     }
 
     /**
@@ -26,8 +32,8 @@ class CreateUserTest extends TestCase
      */
     public function testCreateUser(): void
     {
-        $result = $this->createUser->create('andre', '53936047006', '22', '2010-05-09', '981151212', 'email@email.com');
-        self::assertSame('jwt', $result);
+            $result = $this->createUser->create('andre', '53936047006', '22', '2010-05-09', '981151212', 'email@email.com');
+        self::assertIsString($result);
     }
 
     /**

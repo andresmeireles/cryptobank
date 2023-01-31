@@ -9,6 +9,12 @@ use Monolog\Logger;
 
 interface CryptoLoggerInterface
 {
+    public const ERROR_DIR = 'error';
+
+    public const WARNING_DIR = 'warning';
+
+    public const INFO_DIR = 'info';
+
     public function createLogger(string $name, ?Level $level = null): Logger;
 
     public function warning(string $log): void;

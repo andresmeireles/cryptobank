@@ -12,30 +12,35 @@ use Monolog\Logger as MonoLogger;
 class Logger implements CryptoLoggerInterface
 {
     private const LOGGER_PATH = __DIR__ . '/../../var/log';
+
     public function createLogger(string $name, ?Level $level = null): MonoLogger
     {
         $log = new MonoLogger($name);
-        $log->pushHandler(new StreamHandler(self::LOGGER_PATH, $level ?? Level::Info));
+        if (!is_dir(self::LOGGER_PATH)) {
+            mkdir(self::LOGGER_PATH);
+        }
+        $fileName = sprintf('%s/%s.log', self::LOGGER_PATH, $name);
+        $log->pushHandler(new StreamHandler($fileName, $level ?? Level::Info));
         return $log;
     }
 
-    public function getLog(): MonoLogger
+    public function getLog(string $logName): MonoLogger
     {
-        return $this->createLogger('log');
+        return $this->createLogger($logName);
     }
 
     public function warning(string $log): void
     {
-        $this->getLog()->warning($log);
+        $this->getLog(self::WARNING_DIR)->warning($log);
     }
 
     public function error(string $log): void
     {
-        $this->getLog()->error($log);
+        $this->getLog(self::ERROR_DIR)->error($log);
     }
 
     public function info(string $log): void
     {
-        $this->getLog()->info($log);
+        $this->getLog(self::INFO_DIR)->info($log);
     }
 }
