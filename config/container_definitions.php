@@ -3,11 +3,15 @@
 declare(strict_types=1);
 
 use CryptoBank\Action\Api\Auth\CreateAuthUserInterface;
+use CryptoBank\Action\ManageJwt;
+use CryptoBank\Action\Api\ManageJwtInterface;
 use CryptoBank\Action\Api\CreateJwtInterface;
 use CryptoBank\Action\Api\CreateUserInterface;
+use CryptoBank\Action\Api\ParseJwtInterface;
 use CryptoBank\Action\Auth\CreateAuthUser;
 use CryptoBank\Action\Auth\CreateUser;
 use CryptoBank\Action\CreateJwt;
+use CryptoBank\Action\ParseJwt;
 use CryptoBank\Cli\Cli;
 use CryptoBank\Cli\SymfonyCli;
 use CryptoBank\Repository\AccountRepository;
@@ -34,8 +38,10 @@ return array(
     // actions
     CreateUserInterface::class => static fn (Container $c) => $c->get(CreateUser::class),
     CreateJwtInterface::class => static fn () => new CreateJwt(),
+    ParseJwtInterface::class => static fn () => new ParseJwt(),
     EncryptInterface::class => static fn () => new SodiumEncrypt(),
     CreateAuthUserInterface::class => static fn (Container $c) => $c->get(CreateAuthUser::class),
+    ManageJwtInterface::class => static fn(Container $c) => $c->get(ManageJwt::class),
     // other
     CryptoLoggerInterface::class => static fn () => new Logger(),
     // repositories

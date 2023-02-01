@@ -2,6 +2,7 @@
 
 namespace CryptoBank\Cli\Commands;
 
+use CryptoBank\Action\Api\ManageJwtInterface;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use CryptoBank\Action\Auth\SignIn as SignInUser;
@@ -20,7 +21,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 class SignIn extends Command implements Catchable
 {
     public function __construct(
-        private readonly SignInUser $signIn
+        private readonly SignInUser $signIn,
+        private readonly ManageJwtInterface $manageJwt,
     ) {
         parent::__construct();
     }
@@ -54,7 +56,7 @@ class SignIn extends Command implements Catchable
         $output->writeln(sprintf("Endereço %s", $user->address));
         $output->writeln(sprintf("Data de nascimento/fundação %s", $user->birthDateFoundationDate->format('dd/mm/YYYY')));
         $output->writeln(sprintf("Id da conta %s", $user->account->getId()));
-        $output->writeln(sprintf("JWT %s", 'não tem'));
+        $output->writeln(sprintf("JWT %s", $this->manageJwt->checkJwt($user)->token));
 
         return Command::SUCCESS;
     }
