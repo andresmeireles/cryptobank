@@ -17,7 +17,7 @@ use Symfony\Component\Console\Output\OutputInterface;
     name: 'add_user',
     description: 'a simple message command',
     aliases: ['au'],
-    hidden: false
+    hidden: false,
 )]
 class AddCustomer extends Command implements Catchable
 {
@@ -36,11 +36,12 @@ class AddCustomer extends Command implements Catchable
         $this->addOption('birth_date', null, InputOption::VALUE_REQUIRED, 'birth date or foundation date in yyyy-mm-dd format');
         $this->addOption('phone', null, InputOption::VALUE_REQUIRED, 'phone number');
         $this->addOption('email', null, InputOption::VALUE_REQUIRED, 'email');
+        $this->addOption('password', null, InputOption::VALUE_OPTIONAL, '[optional] password to created user, if not passed cpf/cnpj will be used as password');
         $this->addUsage('add_user --name=NAME --rg=RG_NUMBER --cpf=CPF_NUMBER --birth_date=2020-10-12 --phone=PHONE_NUMBER --email=EMAIL');
         parent::configure();
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $name = $input->getOption('name');
         $cpf = $input->getOption('cpf');
@@ -48,16 +49,20 @@ class AddCustomer extends Command implements Catchable
         $birthDate = $input->getOption('birth_date');
         $phone = $input->getOption('phone');
         $email = $input->getOption('email');
+        $password = $input->getOption('password');
         if ($name === null || $cpf === null || $birthDate === null || $phone === null || $email === null) {
             $output->writeln('all parameters must be given');
             return Command::INVALID;
         }
-        $jwt = $this->createUser->create($name, $cpf, $rg, $birthDate, $phone, $email);
+        $jwt = $this->createUser->create($name, $cpf, $rg, $birthDate, $phone, $email, $password);
         if ($jwt instanceof Error) {
             $output->writeln($jwt->message());
             return Command::FAILURE;
         }
         $output->writeln(sprintf('usuario criado com token: %s', $jwt));
+        if ($password === null) {
+            $output->writeln("[senha] CPF/CNPJ do cliente");
+        }
         return Command::SUCCESS;
     }
 }

@@ -6,12 +6,14 @@ use CryptoBank\Errors\Error;
 
 enum AuthError implements Error
 {
-    case USER_NOT_FOUND;
+    case INVALID_USER;
+    case INVALID_JWT;
 
     public function message(): string
     {
         return match($this) {
-            self::USER_NOT_FOUND => 'usuario não encontrado'
+            self::INVALID_USER => 'usuario/conta não encontrada ou senha incorreta',
+            self::INVALID_JWT => 'jwt invalido',
         };
     }
 }

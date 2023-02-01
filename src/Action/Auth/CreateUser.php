@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace CryptoBank\Action\Auth;
 
+use CryptoBank\Action\Api\Auth\CreateAuthUserInterface;
 use CryptoBank\Action\Api\CreateJwtInterface;
 use CryptoBank\Action\Api\CreateUserInterface;
 use CryptoBank\Errors\Error;
@@ -21,13 +22,21 @@ class CreateUser implements CreateUserInterface
         private readonly UserRepositoryInterface $userRepository,
         private readonly AccountRepositoryInterface $accountRepository,
         private readonly JwtRepositoryInterface $jwtRepository,
+        private readonly CreateAuthUserInterface $createAuthUser,
         private readonly CreateJwtInterface $createJwt,
     )
     {
     }
 
-    public function create(string $name, string $cpf, string $rg, string $birthDate, string $phone, string $email): string|Error
-    {
+    public function create(
+        string $name,
+        string $cpf,
+        string $rg,
+        string $birthDate,
+        string $phone,
+        string $email,
+        ?string $password = null
+    ): string|Error {
         $validate = $this->validate($email, $cpf, $rg, $birthDate, $phone, $email);
         if ($validate instanceof Error) {
             return $validate;
@@ -35,7 +44,8 @@ class CreateUser implements CreateUserInterface
         $user = User::create($name, $cpf, $rg, new \DateTime($birthDate), $phone, $email);
         $createdUser = $this->userRepository->create($user);
         $account = Account::create($createdUser);
-        $this->accountRepository->create($account);
+        $createdAccount = $this->accountRepository->create($account);
+        $this->createAuthUser->create($createdUser, $createdAccount, $password);
         $jwt = $this->createJwt->create($createdUser->name);
         $jwtToken = Jwt::create($createdUser, $jwt);
         $this->jwtRepository->create($jwtToken);

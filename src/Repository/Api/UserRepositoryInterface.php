@@ -9,4 +9,5 @@ use CryptoBank\Model\User;
  */
 interface UserRepositoryInterface extends RepositoryInterface
 {
+    public function findOneUserByName(string $user): ?User;
 }

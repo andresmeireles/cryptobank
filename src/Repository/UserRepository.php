@@ -17,4 +17,9 @@ class UserRepository extends Repository implements UserRepositoryInterface
     {
         parent::__construct($em, User::class);
     }
+
+    public function findOneUserByName(string $name): ?User
+    {
+        return $this->findOneBy(['name' => $name]);
+    }
 }

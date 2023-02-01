@@ -8,5 +8,5 @@ use CryptoBank\Errors\Error;
 
 interface CreateUserInterface
 {
-    public function create(string $name, string $cpf, string $rg, string $birthDate, string $phone, string $email): string|Error;
+    public function create(string $name, string $cpf, string $rg, string $birthDate, string $phone, string $email, string $password): string|Error;
 }

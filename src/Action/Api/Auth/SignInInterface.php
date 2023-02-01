@@ -11,5 +11,5 @@ interface SignInInterface
 {
     public function withJwt(string $jwt): User|Error;
 
-    public function withPassword(string $user, string $password): User|Error;
+    public function withPassword(string $userName, string $password): User|Error;
 }

@@ -9,6 +9,13 @@ use CryptoBank\Exception\ItemNotFoundException;
  */
 interface RepositoryInterface
 {
+
+    /**
+     * @param  $id 
+     * @return T|null
+     */
+    public function find(int $id);
+
     /**
      * @param int $id
      * @return T
