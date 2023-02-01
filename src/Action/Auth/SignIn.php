@@ -30,6 +30,13 @@ class SignIn implements SignInInterface
         return $token->user;
     }
 
+    /**
+     * Login user with user name or account number and password
+     *
+     * @param string $userName 
+     * @param string $password 
+     * @return User|Error 
+     */
     public function withPassword(string $userName, string $password): User|Error
     {
         $user = $this->userRepository->findOneUserByName($userName); 

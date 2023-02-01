@@ -66,4 +66,19 @@ abstract class Repository extends EntityRepository
         $this->_em->flush();
         return $item;
     }
+
+    public function beginTransaction(): void
+    {
+        $this->_em->beginTransaction();
+    }
+
+    public function commit(): void
+    {
+        $this->_em->commit();
+    }
+
+    public function rollback(): void
+    {
+        $this->_em->rollback();
+    }
 }

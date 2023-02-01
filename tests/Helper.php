@@ -10,9 +10,11 @@ use CryptoBank\Model\User;
 use PHPUnit\Framework\MockObject\MockObject;
 
 trait Helper {
-    public function user(): User|MockObject
+    public function user(int $id = 1): User|MockObject
     {
-        return $this->createMock(User::class);
+        $user = $this->createMock(User::class);
+        $user->method('getId')->willReturn($id);
+        return $user;
     }
 
     public function auth(): Auth|MockObject

@@ -40,4 +40,10 @@ interface RepositoryInterface
      * @return T
      */
     public function removeById(int $id);
+
+    public function beginTransaction(): void;
+
+    public function commit(): void;
+
+    public function rollback(): void;
 }
