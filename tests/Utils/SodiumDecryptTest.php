@@ -29,4 +29,15 @@ class SodiumDecryptTest extends TestCase
         $result = $this->decrypt->decrypt($encrypt);
         self::assertSame($message, $result);
     }
+    
+    /**
+     * @covers \CryptoBank\Utils\SodiumDecrypt::decrypt
+     */
+    public function testDecryptZero(): void
+    {
+        $message = "0";
+        $encrypt = (new SodiumEncrypt())->encrypt($message);
+        $result = $this->decrypt->decrypt($encrypt);
+        self::assertSame($message, $result);
+    }
 }

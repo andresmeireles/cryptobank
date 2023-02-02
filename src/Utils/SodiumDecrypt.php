@@ -13,7 +13,7 @@ class SodiumDecrypt implements DecryptInterface
         $key = hex2bin($_ENV['SECRET_KEY']);
         $nonce = hex2bin($_ENV['SECRET_NONCE']);
         $decryptedMessage = sodium_crypto_secretbox_open($value, $nonce, $key);
-        if (!$decryptedMessage) {
+        if ($decryptedMessage === false) {
             throw new \LogicException('Error on decrypt message');
         }
         return $decryptedMessage;

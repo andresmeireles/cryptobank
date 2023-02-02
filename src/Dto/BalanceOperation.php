@@ -2,8 +2,8 @@
 
 namespace CryptoBank\Dto;
 
-enum BalanceOperation
+enum BalanceOperation: string
 {
-    case ADD;
-    case MINUS;
+    case ADD = 'add';
+    case MINUS = 'minus';
 }

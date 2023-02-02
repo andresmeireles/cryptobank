@@ -19,6 +19,8 @@
     </testsuites>
     <php>
       <env name="JWT_KEY" value="example_key" />
+      <env name="SECRET_KEY" value="2941580f97cca64b85497a8ab6ac5a1f2f54a8cda353b3caab326773b5577d67" />
+      <env name="SECRET_NONCE" value="b80026761c53c805e230ae44778a07a5b5341085ab51a7f1" />
     </php>
     <coverage cacheDirectory=".phpunit.cache/code-coverage"
               processUncoveredFiles="true">
